@@ -2,16 +2,27 @@ const router = require('express').Router();
 const { Gallery, Painting } = require('../models');
 const withAuth = require('../utils/auth')
 
-// GET all galleries for homepage
-router.get('/hi', async (req, res) => {
-  try {
-    
+// Gets Homepage
+router.get('/', async (req, res) => {
+  try {  
 
-    res.render('main', {
+    res.render('home.handlebars', {     
+      loggedIn: req.session.loggedIn,
+    }) //RENDERS MAIN WITH HOME
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
-      Hello
-      
-    });
+
+// Gets dashboard
+router.get('/dashboard', async (req, res) => {
+  try {    
+
+    res.render('dashboard', {     
+      loggedIn: req.session.loggedIn,
+    }) //RENDERS MAIN WITH dash
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -67,12 +78,21 @@ router.get('/painting/:id', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+  // if (req.session.loggedIn) {
+  //   res.redirect('/');
+  //   return;
+  // }
+
+  res.render('login');
+});
+
+router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
   }
 
-  res.render('login');
+  res.render('signup');
 });
 
 module.exports = router;
