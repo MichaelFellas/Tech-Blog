@@ -1,14 +1,21 @@
 const router = require('express').Router();
-const { Gallery, Painting } = require('../models');
+const {Blog, Comment, User } = require('../models');
 const withAuth = require('../utils/auth')
 
 // Gets Homepage
 router.get('/', async (req, res) => {
   try {  
 
-    res.render('home.handlebars', {     
-      loggedIn: req.session.loggedIn,
-    }) //RENDERS MAIN WITH HOME
+    const blogData = await Blog.findAll({
+      include: [{model: Comment},{model: User}
+      ],
+    });
+
+    const blogs = blogData.map((element) => element.get({ plain: true }));
+
+    console.log(blogs);
+
+    res.render('home', { blogs, loggedIn: req.session.loggedIn }) //RENDERS MAIN WITH HOME
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -57,35 +64,18 @@ router.get('/gallery/:id', withAuth, async (req, res) => {
   
 });
 
-// GET one painting
-router.get('/painting/:id', async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
-    // If the user is logged in, allow them to view the painting
-    try {
-      const dbPaintingData = await Painting.findByPk(req.params.id);
 
-      const painting = dbPaintingData.get({ plain: true });
-
-      res.render('painting', { painting, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  }
-});
-
+//Goes to login Page, if logged in goes to home
 router.get('/login', (req, res) => {
-  // if (req.session.loggedIn) {
-  //   res.redirect('/');
-  //   return;
-  // }
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
 
   res.render('login');
 });
 
+//Goes to signup page
 router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');

@@ -7,6 +7,10 @@ body {
   background-color: rgb(56, 162, 255);
 }
 
+.navbar {
+  border-bottom: whitesmoke 1px solid;
+}
+
 h1 {
   color: rgb(235, 235, 235);
   text-align: center;
@@ -15,10 +19,23 @@ h1 {
 h2 {
   color: #343a40;
   text-align: center;
+  margin: 1%;
+}
+
+h3 {
+  color: #343a40;
+  text-align: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background-color: #cccccc;
+}
+
+.login-margin {
   margin-bottom: 15%;
 }
 
 .login-card {
+  width: 20%;
   background-color: aliceblue;
   padding: 2%;
   margin-top: 5%;
@@ -26,8 +43,50 @@ h2 {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.post-card {
+  width: 85%;
+  background-color: aliceblue;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.form-group {
+  padding: 0.5%;
+  margin: 1%;
+}
+
+.postHeaders {
+  margin: 1%;
+  font-size: larger;
+}
+
+.blogContent {
+  width: 90%;
+  height: 200px;
+  margin: 0px;
+  border: 1px black solid;
+  padding: 1%;
+  text-align: left;
+  background-color: whitesmoke;
+  margin-right: 0.5%;
+}
+
+.blogTitle {
+  width: 90%;
+  margin: 0px;
+  margin-right: 0.5%;
+  border: 1px black solid;
+  padding: 1%;
+  text-align: left;
+  background-color: whitesmoke;
+}
+
 .container-xl {
   width: 100%;
+}
+
+.btn-create {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btnSpace {
@@ -40,6 +99,39 @@ h2 {
   border-radius: 10%;
 }
 
+.btn-primary {
+  margin-top: 3%;
+}
+
 .row {
   width: 100vw;
+}
+
+.card {
+  margin: 1%;
+  width: 85%;
+}
+
+.container-blogs {
+  width: 100%;
+}
+
+.getBlogtitle {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.getBlogContent {
+  width: 85%;
+  border: 1px solid black;
+  color: black;
+  height: 100px;
+  padding: 0.5%;
+}
+
+footer {
+  height: 50px;
+  background-color: #343a40;
+  border-top: whitesmoke 1px solid;
+  margin-top: 2%;
 }
