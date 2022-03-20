@@ -7,6 +7,10 @@ body {
   background-color: rgb(56, 162, 255);
 }
 
+main {
+  min-height: 60vh;
+}
+
 .navbar {
   border-bottom: whitesmoke 1px solid;
 }
@@ -130,8 +134,16 @@ h3 {
 }
 
 footer {
-  height: 50px;
+  height: 70px;
+  width: 100%;
   background-color: #343a40;
   border-top: whitesmoke 1px solid;
-  margin-top: 2%;
+  margin-top: 10%;
+
+  bottom: 0px;
+  left: 0px;
+
+  margin-bottom: 0%;
+
+  position: relative;
 }
