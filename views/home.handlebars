@@ -1,14 +1,16 @@
      {{#each blogs as |blog|}}
       <div class="d-flex flex-column align-items-center">
     <section class="card">
-      <a href="/blog/view/{{id}}">
+      <a href="/post/{{id}}">
         <h2 class="getBlogtitle">{{title}}</h2>
 
         <div class="card-body d-flex flex-column align-items-center">
           
           <p class="getBlogContent">{{content}}</p>
-          <p class="getBlogContent">{{user.name}}</p>
-          <p class="getBlogContent">{{format_date blog_date}}</p>
+          
+          <h4>Author: {{user.name}}</h4>
+          <h5>Created at: {{format_date blog_date}}</h5>
+          
         </div>
       </a>
     </section>

@@ -13,8 +13,6 @@ router.get('/', async (req, res) => {
 
     const blogs = blogData.map((element) => element.get({ plain: true }));
 
-    console.log(blogs);
-
     res.render('home', { blogs, loggedIn: req.session.loggedIn }) //RENDERS MAIN WITH HOME
   } catch (err) {
     console.log(err);
@@ -22,19 +20,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-
-// Gets dashboard
-router.get('/dashboard', async (req, res) => {
-  try {    
-
-    res.render('dashboard', {     
-      loggedIn: req.session.loggedIn,
-    }) //RENDERS MAIN WITH dash
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
 
 // GET one gallery ALSO correct use of withAuth which will redirect if not logged in.
 router.get('/gallery/:id', withAuth, async (req, res) => {

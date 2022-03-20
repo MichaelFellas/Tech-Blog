@@ -1,0 +1,17 @@
+
+<section class="container-blogs d-flex flex-column align-items-center">
+    <section class="card">
+      
+        <h2 class="getBlogtitle">{{blog.title}}</h2>
+
+        <div class="card-body d-flex flex-column align-items-center">
+          
+          <p class="getBlogContent">{{blog.content}}</p>
+          
+          <h4>Author: {{blog.user.name}}</h4>
+          <h5>Created at: {{format_date blog.blog_date}}</h5>
+          
+        </div>
+      </div>
+    </section>  
+</section>
