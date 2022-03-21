@@ -16,11 +16,18 @@ router.get("/:id", async (req, res) => {
               ],
              },
             ],    
-      });      
+      });     
+      
+      if(blogData){
 
       const blog = blogData.get({ plain: true });
       
       res.render('posts', { blog, loggedIn: req.session.loggedIn } );
+      }
+
+      if(!blogData) {
+        res.redirect('/blog');
+      }
       
 
     } catch (err) {
@@ -47,6 +54,23 @@ try {
 } catch (err) {
   console.log(err);
 }
+});
+
+router.delete("/:id", async (req, res) => {
+  console.log ("request here");
+  try {
+    const deleteBlog = await Blog.destroy(
+            {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    res.status(200).json(deleteBlog);
+    res.redirect('/blog');
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.get("/edit/:id", async (req, res) => {

@@ -4,16 +4,20 @@ const blogPost = async (event) => {
   
     const blogTitle = document.querySelector('.blogTitle').value.trim();
     const blogContent = document.querySelector('.blogContent').value.trim();
+    const url = document.location.pathname;
+    const blogId = url.substring(url.lastIndexOf("/") + 1);
+
+    console.log(blogId);
    
     if (blogTitle && blogContent) {
-      const response = await fetch('/post/3', {
+      const response = await fetch(`/post/${blogId}`, {
         method: 'PUT',
         body: JSON.stringify({ blogTitle, blogContent }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('/post/3');   
+        document.location.replace(`/post/${blogId}`);   
         console.log("Request Received")
       } else {
         alert('Failed to update blog on DB');
