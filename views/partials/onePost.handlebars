@@ -5,11 +5,34 @@
           <p class="getBlogContent">{{blog.content}}</p>
      
       <div class="d-flex flex-column align-items-center">
-          <h4>Author: {{blog.user.name}}</h4>
+          <h4>Author: {{blog.user.name}}</h4>          
           <h5>Created at: {{format_date blog.blog_date}}</h5>
       </div>
-      <a class="navbarButton commentBtn" href="">Comment</a> 
+      <a class="navbarButton commentBtn enableComment" href="">Comment</a> 
+      {{#each blog.comments as |comment|}}
+      <div class="commentbox">
+          <h5>Comment: {{comment.content}}</h5>
+          <h5>Comment Author: {{comment.user.name}}</h5>
+          <h5>Left At: {{format_date comment.comment_date}}</h5>
+        </div>
+      {{/each}}
       </div>     
     </section>    
+
+
+<div class="card hide">
+  <h2 class="page-title">Comment</h2>
+    <form class="form blogPost-form d-flex flex-column justify-content-center align-items-center">        
+        <label class="postHeaders" for="blog-comment"></label>
+        <textarea class="form-input getBlogContent" type="text" id="blog-comment"></textarea>      
+      <div class="d-flex justify-content-center">
+      <div class="form-group">
+        <button class="navbarButton commentBtn submitComment" type="click">ADD COMMENT</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+
+  <script src="/js/comment.js"></script>
 

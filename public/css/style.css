@@ -20,10 +20,15 @@ main {
   background-color: rgb(56, 162, 255);
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 0.5%;
+  margin-bottom: 1%;
   padding: 0.5%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10%;
+  border: none;
+}
+
+.fullwidth {
+  width: 90%;
 }
 
 h1 {
@@ -152,6 +157,22 @@ h3 {
   color: black;
   height: 100px;
   padding: 0.5%;
+  margin-bottom: 2%;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: inline;
+}
+
+.commentbox {
+  border: 2px solid black;
+  background-color: antiquewhite;
+  padding: 2%;
+  margin: 2%;
 }
 
 footer {
@@ -160,11 +181,8 @@ footer {
   background-color: #343a40;
   border-top: whitesmoke 1px solid;
   margin-top: 10%;
-
   bottom: 0px;
   left: 0px;
-
   margin-bottom: 0%;
-
   position: relative;
 }

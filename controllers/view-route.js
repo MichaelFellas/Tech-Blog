@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Blog } = require("../models");
+const { User, Blog, Comment } = require("../models");
 
 const withAuth = require("../utils/auth")
 
@@ -14,13 +14,22 @@ router.get("/:id", async (req, res) => {
                 
                 
               ],
-             },
-            ],    
-      });     
+             },{
+              model: Comment,
+              include: [{ model: User, attributes: ["name"] }],
+            },
+          ],
+          order: [[{ model: Comment}, "createdAt", "DESC"]],
+        });
+
+      
       
       if(blogData){
 
       const blog = blogData.get({ plain: true });
+      
+     
+      console.log(blog);
       
       res.render('posts', { blog, loggedIn: req.session.loggedIn } );
       }
@@ -99,5 +108,26 @@ router.get("/edit/:id", async (req, res) => {
       res.status(500).json(err);
     }
 });
+
+
+router.post("/comment/:id", withAuth, async (req, res) => {
+
+  console.log("made it here")
+
+  try {
+    const user = await User.findByPk(req.session.user_id);
+    const commentData = await Comment.create({      
+      content: req.body.content,
+      user_id: user.id,
+      blog_id: req.body.blogId,
+    });
+    commentData.setUser(user);
+    res.json(commentData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;
